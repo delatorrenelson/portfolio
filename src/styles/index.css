@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&family=Varela+Round&display=swap");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light, dark, cupcake, emerald, corporate, synthwave;
+}
 
 :root {
   --purple: #9966f1;
