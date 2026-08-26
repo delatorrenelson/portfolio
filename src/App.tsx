@@ -9,7 +9,7 @@ import ScrollButton from "./components/ScrollButton";
 
 function App() {
   return (
-    <div className="min-h-screen bg-base-100 text-base-content font-sans">
+    <div className="min-h-screen bg-base-100 text-base-content font-sans antialiased selection:bg-primary/20 selection:text-primary">
       <Navbar />
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <Header />
