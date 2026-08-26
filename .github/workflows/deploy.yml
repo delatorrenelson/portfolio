@@ -24,7 +24,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
+<<<<<<< HEAD
           cache: "npm"
+=======
+          cache: 'npm'
+>>>>>>> dec20c13902ec3ce942d08b5fa555ff04dcbbf1e
 
       - name: Install and Build
         run: |
