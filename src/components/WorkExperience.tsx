@@ -23,7 +23,7 @@ function WorkExperienceSection({ title, content }: { title: string; content: str
 function WorkExperience() {
     return (
         <div id="work_experience_section" className="flex flex-col">
-            <SectionHeader title="Work Experience" />
+            <SectionHeader title="Works" />
             <div className="flex flex-col gap-4">
                 {workExperienceData.map((item, index) => {
                     return (

@@ -6,13 +6,13 @@ export default function Header() {
     <header className="space-y-8 pt-4 sm:pt-6 pb-4" id="home_section">
       {/* Avatar & Title Row */}
       <div className="flex items-center gap-5">
-        <div className="avatar">
+        <div className="avatar flex-none">
           <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-avatar-radial border-1 border-base-content/1 shadow-md">
             <img alt="Nelson Dela Torre" src={profile} className="w-full h-full object-scale-down translate-y-1" />
           </div>
         </div>
-        <div>
-          <h1 className="font-heading font-extrabold text-xl sm:text-3xl text-base-content tracking-tight" id="name">
+        <div className="min-w-0 flex-1">
+          <h1 className="font-heading font-extrabold text-xl sm:text-3xl text-base-content tracking-tight truncate" id="name">
             Nelson Dela Torre
           </h1>
           <TagLines />

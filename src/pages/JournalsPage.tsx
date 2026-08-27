@@ -22,7 +22,7 @@ export default function JournalsPage() {
           My Programming Journal
         </h1>
         <p className="text-sm sm:text-base text-base-content/70 leading-relaxed max-w-xl">
-          A blog-style record of my hands-on experience in software engineering, technical troubleshooting, architectural patterns, and continuous learning.
+          A blog-style record of my hands-on experience as a developer, technical troubleshooting, architectural patterns, and continuous learning.
         </p>
       </div>
 
