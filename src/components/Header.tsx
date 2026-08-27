@@ -1,88 +1,91 @@
 import React from "react";
 import profile from "../assets/img/profile.png";
 import { FaGithub, FaLinkedin, FaBehance, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import SectionHeader from "./SectionHeader";
 
 export default function Header() {
   return (
-    <section className="hero min-h-[70vh] bg-base-100 py-12 lg:py-20" id="home_section">
-      <div className="hero-content flex-col lg:flex-row-reverse gap-10 lg:gap-16">
-        <div className="flex-1 flex justify-center">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-purple-500 to-secondary rounded-3xl blur-lg opacity-30 group-hover:opacity-60 transition duration-500"></div>
-            <img
-              id="profile"
-              src={profile}
-              alt="Nelson Profile"
-              className="relative max-w-xs lg:max-w-md rounded-2xl shadow-xl hover:scale-[1.02] transition-transform duration-300 object-cover border border-base-200/50"
-            />
+    <header className="space-y-8 pt-4 sm:pt-6 pb-4" id="home_section">
+      {/* Avatar & Title Row */}
+      <div className="flex items-center gap-5">
+        <div className="avatar">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-avatar-radial border-1 border-base-content/1 shadow-md">
+            <img alt="Nelson Dela Torre" src={profile} className="w-full h-full object-scale-down translate-y-1" />
           </div>
         </div>
-
-        <div className="flex-1 text-center lg:text-left">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary mb-6 font-mono text-xs font-semibold uppercase tracking-widest">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            Available for Opportunities
-          </div>
-
-          <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-base-content mb-3" id="name">
-            Hi, I'm <span className="text-gradient">Nelson</span>
+        <div>
+          <h1 className="font-heading font-extrabold text-2xl sm:text-3xl text-base-content tracking-tight" id="name">
+            Nelson Dela Torre
           </h1>
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-secondary tracking-tight mb-6">
-            Frontend Developer
-          </h2>
-
-          <div className="flex flex-col gap-3 mb-8 font-sans text-sm sm:text-base text-base-content/80 font-medium">
-            <a href="mailto:delatorrenelson127@gmail.com" className="flex items-center gap-3 hover:text-primary transition-colors justify-center lg:justify-start group">
-              <span className="p-2 rounded-lg bg-base-200 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                <FaEnvelope className="text-secondary group-hover:text-primary transition-colors" />
-              </span>
-              <span>delatorrenelson127@gmail.com</span>
-            </a>
-            <a href="tel:0915-7047-251" className="flex items-center gap-3 hover:text-primary transition-colors justify-center lg:justify-start group">
-              <span className="p-2 rounded-lg bg-base-200 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                <FaPhoneAlt className="text-secondary group-hover:text-primary transition-colors" />
-              </span>
-              <span>0915-7047-251</span>
-            </a>
-            <div className="flex items-center gap-3 justify-center lg:justify-start">
-              <span className="p-2 rounded-lg bg-base-200">
-                <FaMapMarkerAlt className="text-secondary" />
-              </span>
-              <span>Caloocan City, Manila, Philippines</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 justify-center lg:justify-start">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-circle btn-primary btn-outline hover:scale-110 transition-transform shadow-xs"
-              href="https://github.com/delatorrenelson"
-              aria-label="GitHub Profile"
-            >
-              <FaGithub size={20} />
-            </a>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-circle btn-primary btn-outline hover:scale-110 transition-transform shadow-xs"
-              href="https://www.linkedin.com/in/nelson-delatorre-4a04b2192/"
-              aria-label="LinkedIn Profile"
-            >
-              <FaLinkedin size={20} />
-            </a>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-circle btn-primary btn-outline hover:scale-110 transition-transform shadow-xs"
-              href="https://www.behance.net/gallery/163222613/Web-Designs"
-              aria-label="Behance Portfolio"
-            >
-              <FaBehance size={20} />
-            </a>
-          </div>
+          <p className="text-base sm:text-lg text-base-content/65 font-medium mt-0.5">
+            Tech Enthusiast & <span className="font-serif-italic font-normal text-base-content">Creative Developer</span>
+          </p>
         </div>
       </div>
-    </section>
+
+      {/* Intro Bio Prose */}
+      <div className="space-y-4 text-base sm:text-[17px] text-base-content/90 leading-relaxed sm:leading-8">
+        <p>
+          I'm strongest at building <span className="font-serif-italic font-normal text-base-content">frontend web applications</span> end to end: designing intuitive interfaces, engineering clean React & TypeScript code, and delivering responsive user experiences.
+        </p>
+        <p>
+          Passionate about modern UI design systems, performance optimization, and scalable web architectures.
+        </p>
+      </div>
+
+      {/* Status Badge & Social Links */}
+      <div className="pt-2 space-y-4">
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-base-content/15 bg-base-200/60 text-xs sm:text-sm font-semibold text-base-content/85">
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          Available for Opportunities
+        </div>
+
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm font-medium text-base-content/80">
+          <a
+            href="https://github.com/delatorrenelson"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
+          >
+            GitHub
+          </a>
+          <span>·</span>
+          <a
+            href="https://www.linkedin.com/in/nelson-delatorre-4a04b2192/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
+          >
+            LinkedIn
+          </a>
+          <span>·</span>
+          <a
+            href="https://www.behance.net/gallery/163222613/Web-Designs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
+          >
+            Behance
+          </a>
+          <span>·</span>
+          <a
+            href="mailto:delatorrenelson127@gmail.com"
+            className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
+          >
+            Email
+          </a>
+        </div>
+      </div>
+
+      {/* Present Work Section */}
+      <div className="pt-4">
+        <SectionHeader title="Present" />
+        <div className="p-5 sm:p-6 rounded-2xl border border-base-content/10 bg-base-200/40 text-base sm:text-[17px] text-base-content/90 leading-relaxed sm:leading-8">
+          <p>
+            I currently work as a <span className="font-serif-italic font-normal text-base-content">freelance developer</span> for an Australian tech company, where I am responsible for the management and maintenance of clients admin-facing <span className="font-serif-italic font-normal text-base-content">web application</span> and customer-facing <span className="font-serif-italic font-normal text-base-content">mobile application</span>.
+          </p>
+        </div>
+      </div>
+    </header>
   );
 }

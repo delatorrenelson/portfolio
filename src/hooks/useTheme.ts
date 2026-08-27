@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 
-export type Theme = "light" | "dark";
+export enum THEME {
+  light = "light", dark = "business"
+}
+
+export type Theme = THEME;
 
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
     const savedTheme = localStorage.getItem("theme") as Theme | null;
-    if (savedTheme === "light" || savedTheme === "dark") {
+    if (savedTheme === THEME.light || savedTheme === THEME.dark) {
       return savedTheme;
     }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    return THEME.dark;
   });
 
   useEffect(() => {
@@ -17,7 +21,7 @@ export function useTheme() {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    setTheme((prevTheme) => (prevTheme === THEME.light ? THEME.dark : THEME.light));
   };
 
   return { theme, toggleTheme };

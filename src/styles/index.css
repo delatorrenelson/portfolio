@@ -1,13 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500;1,6..72,600&display=swap");
 
 @import "tailwindcss";
+
 @plugin "daisyui" {
-  themes: light, dark, cupcake, emerald, corporate, synthwave;
+  themes: light, cyberpunk, corporate,
+    /* light */
+    dark, black, night, coffee, business, luxury, sunset, halloween;
+  /* dark */
 }
 
-:root {
-  --purple: #9966f1;
-}
+/* Customize light mode primary color */
+/* @plugin "daisyui/theme" {
+  name: "light";
+  --color-primary: #ff5722;
+} */
+
+/* Customize dark mode primary color */
+/* @plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: #9c27b0;
+} */
 
 html {
   scroll-behavior: smooth;
@@ -22,26 +34,31 @@ footer {
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: 'Geist', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .font-heading {
-  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Geist', 'Outfit', sans-serif;
 }
 
 .font-mono {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', 'JetBrains Mono', monospace;
 }
 
 .font-sans {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
 }
 
-/* Gradient Text Utilities */
+.font-serif-italic {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+}
+
+/* Gradient Text Utilities using DaisyUI Theme Colors */
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-primary, #6366f1) 0%, var(--purple, #9966f1) 50%, var(--color-secondary, #ec4899) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 50%, var(--color-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -49,14 +66,78 @@ body {
 .hover-glow {
   transition: all 0.3s ease;
 }
+
 .hover-glow:hover {
-  box-shadow: 0 10px 30px -10px rgba(153, 102, 241, 0.25);
+  box-shadow: 0 10px 30px -10px var(--color-primary);
 }
 
-.text-purple {
-  color: var(--purple);
+/* Primary Navy Blue Color Overrides for Light and Dark Modes */
+:root,
+[data-theme="light"] {
+  --color-primary: #1b365d;
+  --color-primary-content: #ffffff;
 }
 
-.bg-purple {
-  background-color: var(--purple);
+[data-theme="black"],
+[data-theme="dark"],
+[data-theme="business"],
+[data-theme="night"],
+[data-theme="luxury"],
+[data-theme="halloween"] {
+  --color-primary: #1d4ed8;
+  --color-primary-content: #ffffff;
+}
+
+/* Background Gradients for Light and Dark Themes */
+[data-theme="light"] body {
+  background-color: #fafaf9;
+  background-image: 
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(27, 54, 93, 0.20), transparent 100%),
+    radial-gradient(ellipse 70% 50% at 100% 70%, rgba(37, 99, 235, 0.12), transparent 100%),
+    radial-gradient(ellipse 60% 50% at 0% 40%, rgba(27, 54, 93, 0.10), transparent 100%);
+  background-attachment: fixed;
+  color: #1c1917;
+}
+
+[data-theme="black"] body,
+[data-theme="dark"] body,
+[data-theme="business"] body,
+[data-theme="night"] body,
+[data-theme="luxury"] body,
+[data-theme="halloween"] body {
+  background-color: #0f0e0c;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(29, 78, 216, 0.14), transparent 100%),
+    radial-gradient(ellipse 60% 40% at 0% 50%, rgba(30, 58, 138, 0.08), transparent 100%);
+  background-attachment: fixed;
+  color: #f3f3f2;
+}
+
+/* Minimalist Card & Element Customizations */
+.card-portfolio {
+  background-color: var(--color-base-200);
+  border: 1px solid var(--color-base-300);
+  transition: all 0.2s ease-in-out;
+}
+
+[data-theme="black"] .card-portfolio,
+[data-theme="dark"] .card-portfolio,
+[data-theme="business"] .card-portfolio,
+[data-theme="halloween"] .card-portfolio {
+  background-color: #171614;
+  border-color: #292724;
+}
+
+[data-theme="light"] .card-portfolio {
+  background-color: #f5f5f4;
+  border-color: #e7e5e4;
+}
+
+/* Avatar Radial Gradient Background */
+.bg-avatar-radial {
+  background: radial-gradient(circle at 50% 45%, #52525b 0%, #27272a 55%, #171614 100%);
+}
+
+[data-theme="light"] .bg-avatar-radial {
+  background: radial-gradient(circle at 50% 45%, #ffffff 0%, #e7e5e4 55%, #d6d3d1 100%);
 }

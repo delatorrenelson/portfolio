@@ -1,0 +1,105 @@
+[
+  {
+    "id": "cloudflare-too-many-redirects",
+    "title": "Cloudflare: Too Many Redirects Error when Proxying",
+    "date": "May 2024",
+    "readTime": "4 min read",
+    "tags": ["Cloudflare", "DevOps", "SSL/TLS", "Web Security"],
+    "description": "Troubleshooting SSL/TLS encryption modes and flexible proxy settings causing infinite redirect loops.",
+    "content": [
+      "When proxying web traffic through Cloudflare for a client application, I ran into the infamous `ERR_TOO_MANY_REDIRECTS` browser error. The web server was running Nginx with an SSL certificate issued via Let's Encrypt, yet any HTTPS request triggered an infinite redirect loop.",
+      "### Understanding the Root Cause",
+      "The issue stemmed from a mismatch between Cloudflare's SSL/TLS encryption mode and the backend server configuration. Cloudflare was set to **Flexible SSL mode**. In Flexible mode, Cloudflare connects to the origin server over unencrypted HTTP (port 80).",
+      "However, our Nginx configuration had a strict rule redirecting all HTTP traffic to HTTPS (`return 301 https://$host$request_uri;`). This created a classic infinite loop:\n1. Visitor requests HTTPS page.\n2. Cloudflare receives HTTPS request, offloads SSL, and forwards request to origin over HTTP.\n3. Nginx sees HTTP request and responds with a 301 Redirect to HTTPS.\n4. Cloudflare receives the 301 and sends it back to the browser.\n5. Browser repeats step 1 endlessly.",
+      "### The Solution",
+      "To resolve this, I updated the Cloudflare SSL/TLS setting from **Flexible** to **Full (Strict)**. This instructs Cloudflare to establish an encrypted HTTPS connection to the origin server using valid SSL certificates.",
+      "Additionally, I verified Nginx headers to ensure `X-Forwarded-Proto` was correctly set:\n```nginx\nproxy_set_header X-Forwarded-Proto $scheme;\n```",
+      "### Key Takeaways",
+      "Always align your CDN proxy SSL mode with your origin server's HTTPS enforcement policies. Using Full (Strict) mode ensures end-to-end security while avoiding redirection loops."
+    ]
+  },
+  {
+    "id": "up-and-running-with-aws-ec2",
+    "title": "Up and Running with AWS EC2",
+    "date": "Feb 2024",
+    "readTime": "5 min read",
+    "tags": ["AWS", "EC2", "Cloud Infrastructure", "Linux"],
+    "description": "Setting up elastic compute cloud instances, security groups, and automated deployment pipelines.",
+    "content": [
+      "Deploying scalable cloud compute instances is a fundamental milestone in full-stack web engineering. Recently, I set up a dedicated AWS EC2 architecture for hosting containerized Node.js applications.",
+      "### Instance Provisioning & Security Groups",
+      "I selected an Ubuntu Server 22.04 LTS t3.micro instance within an AWS Free Tier allocation. Designing proper Security Group rules was critical:\n- **SSH (Port 22)**: Restricted strictly to static administrator IP ranges.\n- **HTTP (Port 80) & HTTPS (Port 443)**: Open to public web traffic (`0.0.0.0/0`).",
+      "### System Initialization & Deployment",
+      "After connecting via SSH using RSA key pairs, I configured Docker and Docker Compose to manage process isolation. Setting up systemd services ensured automatic service recovery on reboot:\n```bash\nsudo systemctl enable docker\nsudo systemctl start docker\n```",
+      "### Key Takeaways",
+      "Never expose SSH ports globally. Always implement principle of least privilege in AWS Security Groups and rely on automated systemd daemons for uptime reliability."
+    ]
+  },
+  {
+    "id": "up-and-running-with-aws-vpc",
+    "title": "Up and Running with AWS VPC",
+    "date": "Jan 2024",
+    "readTime": "6 min read",
+    "tags": ["AWS", "VPC", "Networking", "Security"],
+    "description": "Configuring custom virtual private clouds, subnets, route tables, and NAT gateways.",
+    "content": [
+      "Building production cloud infrastructure requires a solid networking foundation. I designed a custom AWS Virtual Private Cloud (VPC) with isolated public and private subnets.",
+      "### Network Architecture Design",
+      "- **CIDR Block**: `10.0.0.0/16` providing 65,536 IP addresses across multi-AZ deployment.\n- **Public Subnets**: `10.0.1.0/24` (AZ-a) & `10.0.2.0/24` (AZ-b) for Internet Gateway (IGW) route attachment.\n- **Private Subnets**: `10.0.10.0/24` & `10.0.20.0/24` hosting backend application services and databases isolated from direct internet access.",
+      "### Route Tables & NAT Gateway",
+      "To allow backend private servers to fetch security patches without exposing open inbound ports, I attached a NAT Gateway inside the public subnet and pointed the private route table default route (`0.0.0.0/0`) to the NAT Gateway target.",
+      "### Key Takeaways",
+      "Separating public web nodes from private database networks dramatically reduces attack surface while maintaining patch automation."
+    ]
+  },
+  {
+    "id": "dynamically-load-ansible-inventory-with-ec2-ip",
+    "title": "Dynamically Load Ansible Inventory with EC2 IP",
+    "date": "Dec 2023",
+    "readTime": "4 min read",
+    "tags": ["Ansible", "AWS", "Automation", "DevOps"],
+    "description": "Automating dynamic server inventory discovery for configuration management across cloud environments.",
+    "content": [
+      "Manually updating static Ansible inventory files whenever AWS EC2 instances scale or restart with new IP addresses is error-prone. To solve this, I integrated the `amazon.aws.aws_ec2` inventory plugin.",
+      "### Dynamic Plugin Configuration",
+      "Creating `aws_ec2.yaml` enabled automated discovery based on AWS resource tags:\n```yaml\nplugin: amazon.aws.aws_ec2\nregions:\n  - ap-southeast-1\nkeyed_groups:\n  - key: tags.Environment\n    prefix: env\n  - key: tags.Role\n    prefix: role\n```",
+      "### Execution & Verification",
+      "Running `ansible-inventory -i aws_ec2.yaml --graph` dynamically structured hosts into dynamic groups (`env_production`, `role_webserver`), eliminating hardcoded IPs from Playbooks.",
+      "### Key Takeaways",
+      "Infrastructure automation thrives on metadata and tags. Dynamic inventory plugins save hours of manual maintenance during deployments."
+    ]
+  },
+  {
+    "id": "generate-terraform-from-existing-aws-infrastructure",
+    "title": "Generate Terraform from existing AWS infrastructure",
+    "date": "Dec 2023",
+    "readTime": "5 min read",
+    "tags": ["Terraform", "IaC", "AWS", "Cloud Architecture"],
+    "description": "Importing legacy cloud resources into infrastructure-as-code state files seamlessly.",
+    "content": [
+      "When taking over cloud environments initially created via the AWS Management Console, transitioning them to Infrastructure as Code (IaC) with Terraform is essential for reliability.",
+      "### The Import Workflow",
+      "Using Terraform 1.5+ declarative `import` blocks allowed clean resource mapping:\n```hcl\nimport {\n  to = aws_s3_bucket.portfolio_assets\n  id = \"my-portfolio-assets-bucket\"\n}\n```",
+      "Running `terraform plan -generate-config-out=generated_resources.tf` automatically generated HCL configurations, which I then refactored into modular code structures.",
+      "### Key Takeaways",
+      "Imperative manual changes are technical debt. Importing legacy infrastructure into version-controlled Terraform code guarantees repeatable, disaster-recoverable environments."
+    ]
+  },
+  {
+    "id": "my-first-commit",
+    "title": "My First Commit",
+    "date": "Aug 2026",
+    "readTime": "3 min read",
+    "tags": ["React", "TypeScript", "Tailwind CSS", "Portfolio"],
+    "description": "This is my first commit to my portfolio website. Excited to share my software engineering journey.",
+    "content": [
+      "Today marks an exciting milestone: initiating the codebase for my personal portfolio application! As a developer passionate about intuitive user experiences and clean code, building a tailored digital workspace has been high on my list.",
+      "### Tech Stack Selection",
+      "I chose a modern, high-performance web frontend stack:\n- **Vite & React 19**: Ultra-fast module reloading and component architecture.\n- **TypeScript**: Strict type safety across components and asset schemas.\n- **Tailwind CSS v4 & DaisyUI 5**: CSS-first custom design system with rich dark and light themes.",
+      "### Architectural Goals",
+      "My goal is to keep the portfolio fast, accessible, minimalist, and responsive across device screens—serving as a live catalog of projects, technical skills, education, and development journals.",
+      "### Looking Ahead",
+      "This is just the beginning. I'll continue documenting technical learnings, architectural breakdowns, and real-world project achievements right here in my programming journal."
+    ]
+  }
+]
