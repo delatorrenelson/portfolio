@@ -13,8 +13,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     window.open(url, "_blank");
   };
 
+  const projectId = title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
   return (
     <div
+      id={`project-card-${projectId}`}
       className="card-portfolio p-5 sm:p-6 rounded-2xl cursor-pointer group flex flex-col justify-between hover:border-base-content/25 transition-all duration-300 shadow-sm hover:shadow-md"
       onClick={() => openLink(href)}
     >

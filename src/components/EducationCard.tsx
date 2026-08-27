@@ -13,9 +13,10 @@ interface EducationCardProps {
 function EducationCard({ education }: EducationCardProps) {
   const { title, description, icon, year } = education;
   const IconComponent = iconMap[icon] || FaCertificate;
+  const educationId = title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
   return (
-    <div className="card-portfolio p-5 sm:p-6 rounded-2xl flex flex-col justify-between shadow-sm">
+    <div id={`education-card-${educationId}`} className="card-portfolio p-5 sm:p-6 rounded-2xl flex flex-col justify-between shadow-sm">
       <div>
         <div className="flex items-center gap-3 text-base-content/80">
           <IconComponent className="text-lg sm:text-xl" />

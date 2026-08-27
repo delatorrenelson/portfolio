@@ -17,6 +17,7 @@ export default function ProgrammingJournal() {
       </div>
       <div className="mt-5">
         <Link
+          id="all-journals-link"
           to="/journals"
           className="inline-flex items-center gap-1 text-xs sm:text-sm font-medium text-base-content/60 hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
         >

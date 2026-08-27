@@ -11,9 +11,9 @@ const workExperienceData = [
     }
 ]
 
-function WorkExperienceSection({ title, content }: { title: string; content: string }) {
+function WorkExperienceSection({ id, title, content }: { id?: string; title: string; content: string }) {
     return (
-        <div className="p-5 sm:p-6 rounded-2xl border border-base-content/10 bg-base-200/40 text-base sm:text-[17px] text-base-content/90 leading-relaxed sm:leading-6">
+        <div id={id} className="p-5 sm:p-6 rounded-2xl border border-base-content/10 bg-base-200/40 text-base sm:text-[17px] text-base-content/90 leading-relaxed sm:leading-6">
             <h4 className="italic text-base text-base-content/40">{title}</h4>
             <p>{content}</p>
         </div>
@@ -24,10 +24,10 @@ function WorkExperience() {
     return (
         <div id="work_experience_section" className="flex flex-col">
             <SectionHeader title="Works" />
-            <div className="flex flex-col gap-4">
+            <div id="work-experience-list" className="flex flex-col gap-4">
                 {workExperienceData.map((item, index) => {
                     return (
-                        <WorkExperienceSection key={index} title={item.title} content={item.content} />
+                        <WorkExperienceSection key={index} id={`work-card-${index}`} title={item.title} content={item.content} />
                     );
                 })}
             </div>

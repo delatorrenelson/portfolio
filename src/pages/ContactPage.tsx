@@ -82,7 +82,7 @@ export default function ContactPage() {
 
                 {/* Success Reply Bubble */}
                 {isSent && (
-                    <div className="flex items-start gap-3">
+                    <div id="contact-success-bubble" className="flex items-start gap-3">
                         <div className="avatar flex-none">
                             <div className="w-9 h-9 rounded-full overflow-hidden bg-avatar-radial border border-base-content/10">
                                 <img
@@ -100,8 +100,9 @@ export default function ContactPage() {
                 )}
 
                 {/* Minimal Chat Form */}
-                <form onSubmit={handleSubmit} className="space-y-3 pt-2 border-t border-base-content/10">
+                <form id="contact-form" onSubmit={handleSubmit} className="space-y-3 pt-2 border-t border-base-content/10">
                     <input
+                        id="contact-email-input"
                         type="email"
                         required
                         placeholder="Your email address"
@@ -113,6 +114,7 @@ export default function ContactPage() {
 
                     <div className="relative">
                         <textarea
+                            id="contact-message-input"
                             required
                             rows={3}
                             placeholder="Type your message..."
@@ -124,20 +126,16 @@ export default function ContactPage() {
 
                         <div className="absolute right-3 bottom-3 flex items-center gap-2">
                             <button
+                                id="contact-submit-btn"
                                 type="submit"
                                 disabled={isSending || !message.trim() || !email.trim()}
-                                className="px-4 py-1.5 rounded-lg bg-primary text-primary-content text-xs font-semibold hover:opacity-90 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                aria-label="Send Message"
+                                className="p-2 rounded-lg bg-primary text-primary-content hover:opacity-90 transition-all flex items-center justify-center shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {isSending ? (
-                                    <>
-                                        <FaSpinner className="text-xs animate-spin" />
-                                        <span>Sending...</span>
-                                    </>
+                                    <FaSpinner className="text-xs sm:text-sm animate-spin" />
                                 ) : (
-                                    <>
-                                        <span>Send</span>
-                                        <LuSend className="text-xs" />
-                                    </>
+                                    <LuSend className="text-xs sm:text-sm" />
                                 )}
                             </button>
                         </div>

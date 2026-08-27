@@ -1,3 +1,5 @@
+import { LuMoveRight } from "react-icons/lu";
+import { Link } from "react-router-dom";
 import profile from "../assets/img/profile.png";
 import TagLines from "./TagLines";
 
@@ -6,9 +8,9 @@ export default function Header() {
     <header className="space-y-8 pt-4 sm:pt-6 pb-4" id="home_section">
       {/* Avatar & Title Row */}
       <div className="flex items-center gap-5">
-        <div className="avatar flex-none">
+        <div className="avatar flex-none" id="header-avatar-wrapper">
           <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-avatar-radial border-1 border-base-content/1 shadow-md">
-            <img alt="Nelson Dela Torre" src={profile} className="w-full h-full object-scale-down translate-y-1" />
+            <img id="profile-avatar-img" alt="Nelson Dela Torre" src={profile} className="w-full h-full object-scale-down translate-y-1" />
           </div>
         </div>
         <div className="min-w-0 flex-1">
@@ -20,7 +22,7 @@ export default function Header() {
       </div>
 
       {/* Intro Bio Prose */}
-      <div className="space-y-4 text-base sm:text-[17px] text-base-content/90 leading-relaxed sm:leading-6">
+      <div id="intro-bio-section" className="space-y-4 text-base sm:text-[17px] text-base-content/90 leading-relaxed sm:leading-6">
         <p>
           I engineer full-stack web and mobile products, pairing robust architecture with intuitive UI/UX design.
         </p>
@@ -31,13 +33,14 @@ export default function Header() {
 
       {/* Status Badge & Social Links */}
       <div className="pt-2 space-y-4">
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-base-content/15 bg-base-200/60 text-xs sm:text-sm font-semibold text-base-content/85">
+        <div id="status-badge-available" className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-base-content/15 bg-base-200/60 text-xs sm:text-sm font-semibold text-base-content/85">
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
           Available for Opportunities
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm font-medium text-base-content/80">
+        <div id="social-links-list" className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm font-medium text-base-content/80">
           <a
+            id="social-link-github"
             href="https://github.com/delatorrenelson"
             target="_blank"
             rel="noopener noreferrer"
@@ -47,6 +50,7 @@ export default function Header() {
           </a>
           <span>·</span>
           <a
+            id="social-link-linkedin"
             href="https://www.linkedin.com/in/nelson-delatorre-4a04b2192/"
             target="_blank"
             rel="noopener noreferrer"
@@ -56,6 +60,7 @@ export default function Header() {
           </a>
           <span>·</span>
           <a
+            id="social-link-behance"
             href="https://www.behance.net/gallery/163222613/Web-Designs"
             target="_blank"
             rel="noopener noreferrer"
@@ -64,12 +69,13 @@ export default function Header() {
             Behance
           </a>
           <span>·</span>
-          <a
-            href="mailto:delatorrenelson127@gmail.com"
+          <Link
+            id="social-link-email"
+            to="/contact"
             className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
           >
             Email
-          </a>
+          </Link>
         </div>
       </div>
     </header>

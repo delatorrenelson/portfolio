@@ -30,6 +30,7 @@ export default function JournalsPage() {
       <div className="relative">
         <LuSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-base-content/40 text-sm" />
         <input
+          id="journal-search-input"
           type="text"
           placeholder="Search journals or tags..."
           value={searchQuery}
@@ -39,7 +40,7 @@ export default function JournalsPage() {
       </div>
 
       {/* Journal Entries List */}
-      <div className="flex flex-col border-t border-base-content/10">
+      <div id="journals-list" className="flex flex-col border-t border-base-content/10">
         {filteredJournals.length > 0 ? (
           filteredJournals.map((journal, index) => (
             <JournalCard key={journal.id || journal.title || index} journal={journal} />

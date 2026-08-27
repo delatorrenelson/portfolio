@@ -7,9 +7,9 @@ const tagLines = [
     "Resilient from API to UI."
 ]
 
-function TagLine({ text }: { text: string }) {
+function TagLine({ text, id }: { text: string; id?: string }) {
     return (
-        <p className="h-7 sm:h-8 text-sm sm:text-lg italic text-base-content/75 tracking-tight sm:tracking-wider flex items-center whitespace-nowrap truncate max-w-full">
+        <p id={id} className="h-7 sm:h-8 text-sm sm:text-md italic text-base-content/75 tracking-tight sm:tracking-wider flex items-center whitespace-nowrap truncate max-w-full">
             {text}
         </p>
     )
@@ -17,12 +17,12 @@ function TagLine({ text }: { text: string }) {
 
 function TagLines() {
     return (
-        <div id="tagLines" className="h-7 sm:h-8 overflow-hidden mt-0.5 max-w-full">
-            <div className="animate-tagline-scroll flex flex-col">
+        <div id="taglines-container" className="h-7 sm:h-8 overflow-hidden mt-0.5 max-w-full">
+            <div id="taglines-scroll-wrapper" className="animate-tagline-scroll flex flex-col">
                 {tagLines.map((line, idx) => (
-                    <TagLine key={idx} text={line} />
+                    <TagLine key={idx} id={`tagline-item-${idx}`} text={line} />
                 ))}
-                <TagLine text={tagLines[0]} />
+                <TagLine id="tagline-item-clone" text={tagLines[0]} />
             </div>
         </div>
     )

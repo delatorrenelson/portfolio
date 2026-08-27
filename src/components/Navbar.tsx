@@ -28,9 +28,10 @@ export default function Navbar() {
   };
 
   return (
-    <div className="max-w-[720px] mx-auto px-4 sm:px-6 pt-6 sm:pt-8 flex justify-between items-center min-h-[40px]">
+    <div id="nav-bar" className="max-w-[720px] mx-auto px-4 sm:px-6 pt-6 sm:pt-8 flex justify-between items-center min-h-[40px]">
       {!isHome ? (
         <button
+          id="nav-back-btn"
           type="button"
           onClick={handleBack}
           className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-base-content/60 hover:text-base-content transition-colors group cursor-pointer"

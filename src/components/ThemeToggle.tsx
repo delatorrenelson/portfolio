@@ -11,6 +11,7 @@ export default function ThemeToggle({ theme, toggleTheme }: ThemeToggleProps) {
 
   return (
     <button
+      id="theme-toggle-btn"
       type="button"
       onClick={toggleTheme}
       className="btn btn-ghost btn-circle text-xl transition-transform duration-300 hover:rotate-12"

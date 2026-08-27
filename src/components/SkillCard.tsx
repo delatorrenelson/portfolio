@@ -18,9 +18,10 @@ interface SkillCardProps {
 export default function SkillCard({ skill }: SkillCardProps) {
   const { title, description, icon, measure } = skill;
   const IconComponent = iconMap[icon] || FaLightbulb;
+  const skillId = title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
   return (
-    <div className="card-portfolio p-5 sm:p-6 rounded-2xl flex flex-col justify-between shadow-sm">
+    <div id={`skill-card-${skillId}`} className="card-portfolio p-5 sm:p-6 rounded-2xl flex flex-col justify-between shadow-sm">
       <div>
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3 text-base-content/80">

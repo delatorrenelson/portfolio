@@ -21,9 +21,12 @@ export default function JournalCard({ journal }: JournalCardProps) {
 
   const targetPath = id ? `/journals/${id}` : "/journals";
 
+  const journalId = id || title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
   if (url && url !== "#") {
     return (
       <a
+        id={`journal-card-external-${journalId}`}
         href={url}
         target="_blank"
         rel="noopener noreferrer"
@@ -42,6 +45,7 @@ export default function JournalCard({ journal }: JournalCardProps) {
 
   return (
     <Link
+      id={`journal-card-${journalId}`}
       to={targetPath}
       title={description || title}
       className="group flex items-center justify-between py-3.5 sm:py-4 border-b border-base-content/10 transition-colors duration-200 cursor-pointer"
