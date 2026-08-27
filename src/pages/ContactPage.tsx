@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import profile from "../assets/img/profile (13).png";
+import profile from "../assets/img/profile.png";
 import { LuSend, LuCheck } from "react-icons/lu";
 import { FaSpinner } from "react-icons/fa";
 

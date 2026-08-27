@@ -91,7 +91,7 @@ body {
 /* Background Gradients for Light and Dark Themes */
 [data-theme="light"] body {
   background-color: #fafaf9;
-  background-image: 
+  background-image:
     radial-gradient(ellipse 90% 60% at 50% -10%, rgba(27, 54, 93, 0.20), transparent 100%),
     radial-gradient(ellipse 70% 50% at 100% 70%, rgba(37, 99, 235, 0.12), transparent 100%),
     radial-gradient(ellipse 60% 50% at 0% 40%, rgba(27, 54, 93, 0.10), transparent 100%);
@@ -106,7 +106,7 @@ body {
 [data-theme="luxury"] body,
 [data-theme="halloween"] body {
   background-color: #0f0e0c;
-  background-image: 
+  background-image:
     radial-gradient(ellipse 80% 50% at 50% -20%, rgba(29, 78, 216, 0.14), transparent 100%),
     radial-gradient(ellipse 60% 40% at 0% 50%, rgba(30, 58, 138, 0.08), transparent 100%);
   background-attachment: fixed;
@@ -140,4 +140,19 @@ body {
 
 [data-theme="light"] .bg-avatar-radial {
   background: radial-gradient(circle at 50% 45%, #ffffff 0%, #e7e5e4 55%, #d6d3d1 100%);
+}
+
+/* Tagline Vertical Scroll Animation (6 items - 4.5s display stay) */
+@keyframes tagline-scroll {
+  0%, 14.66% { transform: translateY(0%); }
+  16.66%, 31.33% { transform: translateY(-14.2857%); }
+  33.33%, 48.00% { transform: translateY(-28.5714%); }
+  50.00%, 64.66% { transform: translateY(-42.8571%); }
+  66.66%, 81.33% { transform: translateY(-57.1428%); }
+  83.33%, 98.00% { transform: translateY(-71.4285%); }
+  100% { transform: translateY(-85.7142%); }
+}
+
+.animate-tagline-scroll {
+  animation: tagline-scroll 27s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }

@@ -1,7 +1,5 @@
-import React from "react";
 import profile from "../assets/img/profile.png";
-import { FaGithub, FaLinkedin, FaBehance, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
-import SectionHeader from "./SectionHeader";
+import TagLines from "./TagLines";
 
 export default function Header() {
   return (
@@ -14,22 +12,20 @@ export default function Header() {
           </div>
         </div>
         <div>
-          <h1 className="font-heading font-extrabold text-2xl sm:text-3xl text-base-content tracking-tight" id="name">
+          <h1 className="font-heading font-extrabold text-xl sm:text-3xl text-base-content tracking-tight" id="name">
             Nelson Dela Torre
           </h1>
-          <p className="text-base sm:text-lg text-base-content/65 font-medium mt-0.5">
-            Tech Enthusiast & <span className="font-serif-italic font-normal text-base-content">Creative Developer</span>
-          </p>
+          <TagLines />
         </div>
       </div>
 
       {/* Intro Bio Prose */}
-      <div className="space-y-4 text-base sm:text-[17px] text-base-content/90 leading-relaxed sm:leading-8">
+      <div className="space-y-4 text-base sm:text-[17px] text-base-content/90 leading-relaxed sm:leading-6">
         <p>
-          I'm strongest at building <span className="font-serif-italic font-normal text-base-content">frontend web applications</span> end to end: designing intuitive interfaces, engineering clean React & TypeScript code, and delivering responsive user experiences.
+          I engineer full-stack web and mobile products, pairing robust architecture with intuitive UI/UX design.
         </p>
         <p>
-          Passionate about modern UI design systems, performance optimization, and scalable web architectures.
+          Passionate about clean architecture and building custom solutions tailored to client deliverables.
         </p>
       </div>
 
@@ -74,16 +70,6 @@ export default function Header() {
           >
             Email
           </a>
-        </div>
-      </div>
-
-      {/* Present Work Section */}
-      <div className="pt-4">
-        <SectionHeader title="Present" />
-        <div className="p-5 sm:p-6 rounded-2xl border border-base-content/10 bg-base-200/40 text-base sm:text-[17px] text-base-content/90 leading-relaxed sm:leading-8">
-          <p>
-            I currently work as a <span className="font-serif-italic font-normal text-base-content">freelance developer</span> for an Australian tech company, where I am responsible for the management and maintenance of clients admin-facing <span className="font-serif-italic font-normal text-base-content">web application</span> and customer-facing <span className="font-serif-italic font-normal text-base-content">mobile application</span>.
-          </p>
         </div>
       </div>
     </header>
