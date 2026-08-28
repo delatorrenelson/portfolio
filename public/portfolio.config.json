@@ -1,0 +1,30 @@
+{
+  "name": "Portfolio App Feature Configuration",
+  "version": "1.0.0",
+  "features": {
+    "header": {
+      "enabled": true,
+      "status_badge": true,
+      "social_links": {
+        "github": true,
+        "linkedin": true,
+        "behance": true,
+        "email": true
+      }
+    },
+    "work_experience": true,
+    "projects": {
+      "enabled": true,
+      "other_projects": true
+    },
+    "programming_journal": {
+      "enabled": true,
+      "journals_page": true
+    },
+    "skills": true,
+    "education": true,
+    "contact_page": true,
+    "theme_toggle": true,
+    "scroll_top_button": true
+  }
+}

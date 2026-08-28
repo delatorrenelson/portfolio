@@ -1,29 +1,29 @@
 [
     {
-        "title" : "Coding Bootcamp",
-        "description" : "MERN Tech Stack at Zuitt - Coding Bootcamp",
-        "year" : "Year - 2021",
+        "title": "Coding Bootcamp",
+        "description": "MERN Tech Stack at Zuitt - Coding Bootcamp",
+        "year": "2021",
         "icon": "fa fa-solid fa-certificate",
         "link": "https://zuitt.co/"
     },
     {
-        "title" : "BS Information Technology",
-        "description" : "At Bestlink College of the Philippines",
-        "year" : "Year - 2019",
+        "title": "BS Information Technology",
+        "description": "At Bestlink College of the Philippines",
+        "year": "2019",
         "icon": "fa fa-solid fa-graduation-cap",
         "link": "https://www.facebook.com/bcpofficialpage"
     },
     {
-        "title" : "Web Development",
-        "description" : "At TESDA School Excel (Marikina)",
-        "year" : "Year - 2015",
+        "title": "Web Development",
+        "description": "At TESDA School Excel (Marikina)",
+        "year": "2015",
         "icon": "fa fa-solid fa-certificate",
         "link": "https://www.facebook.com/exceltscareercenterinc"
     },
     {
-        "title" : "Web Design",
-        "description" : "At TESDA School Excel (Marikina)",
-        "year" : "Year - 2012",
+        "title": "Web Design",
+        "description": "At TESDA School Excel (Marikina)",
+        "year": "2012",
         "icon": "fa fa-solid fa-certificate",
         "link": "https://www.facebook.com/exceltscareercenterinc"
     }

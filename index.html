@@ -1,19 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="business">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/png" href="/src/assets/img/myAvatar_glass.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/src/assets/img/myAvatar_glass.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-  <title>Mr. Nelson Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500;1,6..72,600&display=swap"
+    rel="stylesheet">
+  <title>Mr. Nelson Dela Torre</title>
+  <meta name="description" content="Portfolio of Mr. Nelson Dela Torre" />
+  <meta property="og:title" content="Mr. Nelson Dela Torre" />
+  <meta property="og:image" content="/src/assets/img/myAvatar_glass.png" />
+  <meta property="og:url" content="/portfolio" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="Portfolio of Mr. Nelson Dela Torre" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Mr. Nelson Dela Torre" />
+  <meta property="og:author" content="Nelson Dela Torre" />
+  <meta property="og:creator" content="Nelson Dela Torre" />
+  <meta name="keywords"
+    content="Nelson Dela Torre, delatorrenelson, delatorrenelson127, mrnelson, Mr. Nelson, nelson" />
   <script>
     (function () {
       const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : (prefersDark ? 'dark' : 'light');
+      const theme = (savedTheme === 'light' || savedTheme === 'business') ? savedTheme : 'business';
       document.documentElement.setAttribute('data-theme', theme);
     })();
   </script>

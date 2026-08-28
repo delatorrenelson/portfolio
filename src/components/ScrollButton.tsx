@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FaArrowUp } from 'react-icons/fa';
+import { useFeatureConfig } from "../hooks/useFeatureConfig";
 
 export default function ScrollButton() {
   const [visible, setVisible] = useState(false);
+  const { isFeatureEnabled } = useFeatureConfig();
 
   useEffect(() => {
     const toggleVisible = () => {
@@ -21,7 +23,7 @@ export default function ScrollButton() {
     });
   };
 
-  if (!visible) return null;
+  if (!isFeatureEnabled("scroll_top_button") || !visible) return null;
 
   return (
     <button

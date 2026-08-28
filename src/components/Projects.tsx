@@ -1,19 +1,21 @@
-import React from "react";
 import ProjectCard from "./ProjectCard";
 import { projects } from "../assets/projects";
+import SectionHeader from "./SectionHeader";
+import OtherProjects from "./OtherProjects";
+import { useFeatureConfig } from "../hooks/useFeatureConfig";
 
 export default function Projects() {
+  const { isFeatureEnabled } = useFeatureConfig();
+
   return (
-    <section className="py-20" id="projects">
-      <div className="text-center mb-14">
-        <p className="font-mono text-xs font-semibold uppercase tracking-widest text-primary mb-2">Featured Work</p>
-        <h2 className="font-heading text-4xl sm:text-5xl font-black tracking-tight text-base-content">Projects</h2>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <section id="projects">
+      <SectionHeader title="Recent Projects" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {projects.map((project, index) => (
           <ProjectCard key={project.title || index} project={project} />
         ))}
       </div>
+      {isFeatureEnabled("projects.other_projects") && <OtherProjects />}
     </section>
   );
 }

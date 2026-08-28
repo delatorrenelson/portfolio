@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Dark Tile Canvas -->
+  <rect width="512" height="512" rx="112" fill="#09090b" />
+
+  <!-- 2 Minimalist Code Bracket Shapes: N (<) and D (>) -->
+  <g fill="none" stroke="#ffffff" stroke-width="38" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Shape 1: Opening Bracket < forming N -->
+    <path d="M 216 168 L 120 256 L 216 344 V 168" />
+
+    <!-- Shape 2: Closing Bracket > forming D -->
+    <path d="M 288 168 H 336 L 408 256 L 336 344 H 288 V 168 Z" />
+  </g>
+</svg>
