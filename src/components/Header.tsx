@@ -72,9 +72,11 @@ export default function Header() {
           </div>
         </div>
         <div className="min-w-0 flex-1">
-          <h1 className="font-heading font-extrabold text-xl sm:text-3xl text-base-content tracking-tight truncate" id="name">
-            Nelson Dela Torre
-          </h1>
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <h1 className="font-heading font-extrabold text-xl sm:text-3xl text-base-content tracking-tight truncate flex-1" id="name">
+              Nelson Dela Torre
+            </h1>
+          </div>
           <TagLines />
         </div>
       </div>
