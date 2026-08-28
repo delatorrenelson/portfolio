@@ -1,10 +1,12 @@
-import React from "react";
 import ProjectCard from "./ProjectCard";
 import { projects } from "../assets/projects";
 import SectionHeader from "./SectionHeader";
 import OtherProjects from "./OtherProjects";
+import { useFeatureConfig } from "../hooks/useFeatureConfig";
 
 export default function Projects() {
+  const { isFeatureEnabled } = useFeatureConfig();
+
   return (
     <section id="projects">
       <SectionHeader title="Recent Projects" />
@@ -13,7 +15,7 @@ export default function Projects() {
           <ProjectCard key={project.title || index} project={project} />
         ))}
       </div>
-      <OtherProjects />
+      {isFeatureEnabled("projects.other_projects") && <OtherProjects />}
     </section>
   );
 }

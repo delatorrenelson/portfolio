@@ -2,9 +2,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import { useTheme } from "../hooks/useTheme";
 import { LuArrowLeft } from "react-icons/lu";
+import { useFeatureConfig } from "../hooks/useFeatureConfig";
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
+  const { isFeatureEnabled } = useFeatureConfig();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -42,7 +44,11 @@ export default function Navbar() {
       ) : (
         <div />
       )}
-      <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+      {isFeatureEnabled("theme_toggle") ? (
+        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+      ) : (
+        <div />
+      )}
     </div>
   );
 }

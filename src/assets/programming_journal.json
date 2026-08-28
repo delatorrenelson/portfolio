@@ -1,5 +1,56 @@
 [
   {
+    "id": "building-responsive-css-tagline-ticker",
+    "title": "Building a Smooth 60fps Vertical Text Ticker in CSS",
+    "date": "Aug 2026",
+    "readTime": "4 min read",
+    "tags": ["CSS", "React", "Animations", "Tailwind CSS"],
+    "description": "Designing a lightweight, zero-JS vertical text marquee with CSS keyframe animation and zero horizontal layout shift on mobile.",
+    "content": [
+      "Adding dynamic tagline animations to a developer portfolio header creates instant engagement. However, implementing smooth vertical text tickers using JavaScript intervals often causes layout jitter, re-renders, and horizontal overflow on mobile screens.",
+      "### The Challenge",
+      "Creating an infinite vertical scrolling text ticker in React that transitions smoothly between multiple phrases with controllable display intervals, without triggering JS re-render loops or pushing flexbox parents beyond mobile screen boundaries.",
+      "### The Solution",
+      "I built a pure CSS keyframe vertical scroll animation combined with a clean React component architecture:\n1. **Seamless CSS Keyframes**: Calculated percentage-based `translateY` steps corresponding to item slot heights, appending a clone of the first tagline at the end for an invisible 60fps reset loop.\n2. **Flexbox & Text Bounds**: Fixed horizontal mobile overflow by applying `min-w-0 flex-1` on the parent flex container, combined with `truncate` on `whitespace-nowrap` tagline lines.\n3. **Adaptive Heights**: Scaled line heights and font sizes responsively using Tailwind breakpoints (`h-7 sm:h-8` and `text-sm sm:text-lg`).\n\n```css\n@keyframes tagline-scroll {\n  0%, 14.66% { transform: translateY(0%); }\n  16.66%, 31.33% { transform: translateY(-14.2857%); }\n  100% { transform: translateY(-85.7142%); }\n}\n```",
+      "### Key Takeaways",
+      "CSS keyframe animations outperform JavaScript interval timers for continuous UI motion. Combining CSS transforms with defensive flexbox bounds guarantees high-performance 60fps motion without layout overflow on small screens."
+    ]
+  },
+  {
+    "id": "building-interactive-contact-chat-and-ajax-dispatch",
+    "title": "Building a Chat-Inspired Contact Page with Background AJAX Dispatch",
+    "date": "Aug 27, 2026",
+    "readTime": "4 min read",
+    "tags": ["React", "TypeScript", "UX Design", "API Integration"],
+    "description": "Designing a seamless, chat-bubble contact experience with background AJAX form dispatch, real-time loading feedback, and zero page redirects.",
+    "content": [
+      "Traditional web contact forms often rely on mailto links or heavy external redirects that break user flow. To create a modern, frictionless experience on my portfolio, I designed a chat-inspired contact component with direct background AJAX email dispatch.",
+      "### The Challenge",
+      "Delivering a direct contact channel that feels as responsive as a messaging app, ensuring user messages land straight in my email inbox without triggering full-page browser redirects, popups, or requiring visitors to launch desktop mail apps.",
+      "### The Solution",
+      "I engineered a chat-interface component using React, TypeScript, and FormSubmit AJAX dispatch:\n1. **Background AJAX Delivery**: Sent form payloads via `fetch()` to an endpoint returning JSON responses asynchronously, preventing page reloads.\n2. **Micro-Interactions & Loading States**: Replaced the static submit button with a sleek icon-only toggle (`<LuSend />` to `<FaSpinner className=\"animate-spin\" />`) while disabling fields during dispatch.\n3. **Conversational Feedback**: Rendered an in-chat success bubble upon resolution to confirm message delivery before resetting state.\n\n```tsx\nawait fetch('https://formsubmit.co/ajax/delatorrenelson127@gmail.com', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({ email, message })\n});\n```",
+      "### Key Takeaways",
+      "Designing contact forms as conversational chat interfaces reduces user friction. Combining background AJAX fetch with visual micro-feedback yields a native app-like messaging experience."
+    ]
+  },
+  {
+    "id": "runtime-feature-flags-and-live-syncing",
+    "title": "Implementing Runtime Feature Flags & Live Syncing in React",
+    "date": "Aug 2026",
+    "readTime": "4 min read",
+    "tags": ["React", "TypeScript", "Feature Flags", "Architecture"],
+    "description": "Designing a lightweight, runtime-configurable feature flag engine for static web applications with live auto-syncing.",
+    "content": [
+      "Building static applications deployed to edge CDNs is fantastic for speed, but toggling features or hiding draft UI components usually requires a full rebuild and redeployment pipeline.",
+      "### The Challenge",
+      "Designing a dynamic feature toggle system that reads runtime configuration (`portfolio.config.json`) in a static React app without breaking layout, while ensuring configuration changes update live without requiring manual browser page refreshes.",
+      "### The Solution",
+      "I implemented a custom `FeatureConfigProvider` and `useFeatureConfig` React hook that fetches `/portfolio.config.json` dynamically on mount.\n\nTo ensure live updates without requiring users or developers to manually reload:\n1. **Window Focus Sync**: Attached a `window.addEventListener('focus', fetchConfig)` listener to re-evaluate toggles when returning to the tab.\n2. **Background Polling**: Added a lightweight background polling interval that syncs configuration changes seamlessly.\n3. **Graceful Fallbacks**: Implemented fallback rules ensuring unconfigured paths default to `true`, preventing missing keys from crashing UI sections.\n\n```tsx\nexport const useFeatureConfig = () => {\n  return useContext(FeatureConfigContext);\n};\n```",
+      "### Key Takeaways",
+      "Runtime configuration decouples deployment from feature rollout. Polling combined with event listeners makes static React apps feel as responsive as server-side dynamic applications."
+    ]
+  },
+  {
     "id": "cloudflare-too-many-redirects",
     "title": "Cloudflare: Too Many Redirects Error when Proxying",
     "date": "May 2024",

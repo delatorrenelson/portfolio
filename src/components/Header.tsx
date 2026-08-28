@@ -1,9 +1,67 @@
-import { LuMoveRight } from "react-icons/lu";
+import React from "react";
 import { Link } from "react-router-dom";
 import profile from "../assets/img/profile.png";
 import TagLines from "./TagLines";
+import { useFeatureConfig } from "../hooks/useFeatureConfig";
 
 export default function Header() {
+  const { isFeatureEnabled } = useFeatureConfig();
+
+  const showStatusBadge = isFeatureEnabled("header.status_badge");
+  const showGithub = isFeatureEnabled("header.social_links.github");
+  const showLinkedin = isFeatureEnabled("header.social_links.linkedin");
+  const showBehance = isFeatureEnabled("header.social_links.behance");
+  const showEmail = isFeatureEnabled("header.social_links.email") && isFeatureEnabled("contact_page");
+
+  const activeSocials = [
+    showGithub && (
+      <a
+        key="github"
+        id="social-link-github"
+        href="https://github.com/delatorrenelson"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
+      >
+        GitHub
+      </a>
+    ),
+    showLinkedin && (
+      <a
+        key="linkedin"
+        id="social-link-linkedin"
+        href="https://www.linkedin.com/in/nelson-delatorre-4a04b2192/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
+      >
+        LinkedIn
+      </a>
+    ),
+    showBehance && (
+      <a
+        key="behance"
+        id="social-link-behance"
+        href="https://www.behance.net/gallery/163222613/Web-Designs"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
+      >
+        Behance
+      </a>
+    ),
+    showEmail && (
+      <Link
+        key="email"
+        id="social-link-email"
+        to="/contact"
+        className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
+      >
+        Email
+      </Link>
+    ),
+  ].filter(Boolean);
+
   return (
     <header className="space-y-8 pt-4 sm:pt-6 pb-4" id="home_section">
       {/* Avatar & Title Row */}
@@ -32,52 +90,27 @@ export default function Header() {
       </div>
 
       {/* Status Badge & Social Links */}
-      <div className="pt-2 space-y-4">
-        <div id="status-badge-available" className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-base-content/15 bg-base-200/60 text-xs sm:text-sm font-semibold text-base-content/85">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          Available for Opportunities
-        </div>
+      {(showStatusBadge || activeSocials.length > 0) && (
+        <div className="pt-2 space-y-4">
+          {showStatusBadge && (
+            <div id="status-badge-available" className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-base-content/15 bg-base-200/60 text-xs sm:text-sm font-semibold text-base-content/85">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              Available for Opportunities
+            </div>
+          )}
 
-        <div id="social-links-list" className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm font-medium text-base-content/80">
-          <a
-            id="social-link-github"
-            href="https://github.com/delatorrenelson"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
-          >
-            GitHub
-          </a>
-          <span>·</span>
-          <a
-            id="social-link-linkedin"
-            href="https://www.linkedin.com/in/nelson-delatorre-4a04b2192/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
-          >
-            LinkedIn
-          </a>
-          <span>·</span>
-          <a
-            id="social-link-behance"
-            href="https://www.behance.net/gallery/163222613/Web-Designs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
-          >
-            Behance
-          </a>
-          <span>·</span>
-          <Link
-            id="social-link-email"
-            to="/contact"
-            className="hover:text-base-content underline decoration-base-content/30 underline-offset-4 transition-colors"
-          >
-            Email
-          </Link>
+          {activeSocials.length > 0 && (
+            <div id="social-links-list" className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm font-medium text-base-content/80">
+              {activeSocials.map((social, idx) => (
+                <React.Fragment key={idx}>
+                  {idx > 0 && <span>·</span>}
+                  {social}
+                </React.Fragment>
+              ))}
+            </div>
+          )}
         </div>
-      </div>
+      )}
     </header>
   );
 }

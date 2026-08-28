@@ -6,6 +6,7 @@ import JournalDetailPage from "./pages/JournalDetailPage";
 import ContactPage from "./pages/ContactPage";
 import Layout from "./components/Layout";
 import ScrollButton from "./components/ScrollButton";
+import { FeatureConfigProvider, useFeatureConfig } from "./hooks/useFeatureConfig";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -17,21 +18,38 @@ function ScrollToTop() {
   return null;
 }
 
+function AppRoutes() {
+  const { isFeatureEnabled } = useFeatureConfig();
+
+  const isJournalPageEnabled = isFeatureEnabled("programming_journal.journals_page");
+  const isContactPageEnabled = isFeatureEnabled("contact_page");
+
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        {isJournalPageEnabled && (
+          <>
+            <Route path="/journals" element={<JournalsPage />} />
+            <Route path="/journals/:id" element={<JournalDetailPage />} />
+          </>
+        )}
+        {isContactPageEnabled && <Route path="/contact" element={<ContactPage />} />}
+        <Route path="*" element={<Home />} />
+      </Route>
+    </Routes>
+  );
+}
+
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/journals" element={<JournalsPage />} />
-          <Route path="/journals/:id" element={<JournalDetailPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="*" element={<Home />} />
-        </Route>
-      </Routes>
-      <ScrollButton />
-    </Router>
+    <FeatureConfigProvider>
+      <Router>
+        <ScrollToTop />
+        <AppRoutes />
+        <ScrollButton />
+      </Router>
+    </FeatureConfigProvider>
   );
 }
 
